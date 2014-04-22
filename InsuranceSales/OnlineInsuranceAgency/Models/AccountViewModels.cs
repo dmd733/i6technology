@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace OnlineInsuranceAgency.Models
 {
@@ -52,6 +53,10 @@ namespace OnlineInsuranceAgency.Models
         [Required]
         [Display(Name = "Email Address")]
         public string EmailAddress { get; set; }
+
+        [Required]
+        [Display(Name = "Date of Birth")]
+        public DateTime DateOfBirth { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
