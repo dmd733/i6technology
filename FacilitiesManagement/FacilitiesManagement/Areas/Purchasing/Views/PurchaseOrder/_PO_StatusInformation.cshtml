@@ -1,0 +1,33 @@
+﻿@model FacilitiesManagement.Models.OrderRequest
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Status, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Status)
+        @Html.ValidationMessageFor(model => model.Status)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.EstimatedReleaseDate, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.EstimatedReleaseDate)
+        @Html.ValidationMessageFor(model => model.EstimatedReleaseDate)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.SubmissionDate, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.SubmissionDate)
+        @Html.ValidationMessageFor(model => model.SubmissionDate)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.LastUpdate, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.LastUpdate)
+        @Html.ValidationMessageFor(model => model.LastUpdate)
+    </div>
+</div>

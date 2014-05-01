@@ -1,0 +1,81 @@
+﻿@model FacilitiesManagement.Models.OrderRequest
+
+@{
+    ViewBag.Title = "PlaceOrder";
+}
+
+
+@section head_section{
+    <link href="~/Content/Onokumus.css" rel="stylesheet" />
+    <link href="~/Content/FontAwesome.css" rel="stylesheet" />
+    <script src="~/Scripts/app/app.common.js"></script>
+}
+
+<h2>PlaceOrder</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="container">
+            <div class="row">
+                <div class="box inverse col-md-6">
+                    <header>
+                        <h5>Request Information</h5>
+                    </header>
+                    @Html.Partial("~/Areas/Purchasing/Views/PurchaseOrder/_PO_RequestInformation.cshtml", Model)
+                </div>
+                <div class="box inverse col-md-6">
+                    <header>
+                        <h5>Reference Information</h5>
+                    </header>
+                    @Html.Partial("~/Areas/Purchasing/Views/PurchaseOrder/_PO_ReferenceInformation.cshtml", Model)
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="box inverse col-md-12">
+                    <header>
+                        <h5>Vendor Information</h5>
+                    </header>
+                    @Html.Partial("~/Areas/Purchasing/Views/PurchaseOrder/_PO_VendorInformation.cshtml", Model)
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="box inverse col-md-12">
+                    <header>
+                        <h5>Status Information</h5>
+                    </header>
+                    @Html.Partial("~/Areas/Purchasing/Views/PurchaseOrder/_PO_StatusInformation.cshtml", Model)
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="box inverse col-md-12">
+                    <header>
+                        <h5>Order Details</h5>
+                    </header>
+                    @Html.Partial("~/Areas/Purchasing/Views/PurchaseOrder/_PO_Details.cshtml", Model)
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index", "Home", new { area = ""}, null)
+</div>

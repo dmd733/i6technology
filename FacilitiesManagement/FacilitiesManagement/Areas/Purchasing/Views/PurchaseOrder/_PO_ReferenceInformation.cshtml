@@ -1,0 +1,66 @@
+﻿@using FacilitiesManagement.Models
+@model FacilitiesManagement.Models.OrderRequest
+
+
+<div class="form-group">
+    @Html.LabelFor(model => model.TransactionType, new { @class = "control-label col-md-4" })
+    <div class="col-md-6">
+        @Html.EditorFor(model => model.TransactionType)
+        @Html.ValidationMessageFor(model => model.TransactionType)
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.RequiredReleaseDate, new { @class = "control-label col-md-4" })
+    <div class="col-md-6">
+        @Html.EditorFor(model => model.RequiredReleaseDate)
+        @Html.ValidationMessageFor(model => model.RequiredReleaseDate)
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.GlAccount, new { @class = "control-label col-md-4" })
+    <div class="col-md-6">
+        @(Html.Kendo<OrderRequest>().ComboBoxFor(m => m.GlAccount).DataValueField("Number").DataTextField("Description").Filter(FilterType.Contains).HighlightFirst(true)
+                        .DataSource(src => src.Read(read => read.Action("GetGlAccounts", "Lookup", new { area = "" }))).Events(events => events.Change("app.common.onChangeRestrictValues")))
+        @Html.ValidationMessageFor(model => model.GlAccount)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.ReferenceNumber, new { @class = "control-label col-md-4" })
+    <div class="col-md-6">
+        @Html.EditorFor(model => model.ReferenceNumber)
+        @Html.ValidationMessageFor(model => model.ReferenceNumber)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.CapitalProjectNum, new { @class = "control-label col-md-4" })
+    <div class="col-md-6">
+        @Html.EditorFor(model => model.CapitalProjectNum)
+        @Html.ValidationMessageFor(model => model.CapitalProjectNum)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Location, new { @class = "control-label col-md-4" })
+    <div class="col-md-6">
+        @Html.EditorFor(model => model.Location)
+        @Html.ValidationMessageFor(model => model.Location)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Department, new { @class = "control-label col-md-4" })
+    <div class="col-md-6">
+        @Html.EditorFor(model => model.Department)
+        @Html.ValidationMessageFor(model => model.Department)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.BudgetYear, new { @class = "control-label col-md-4" })
+    <div class="col-md-6">
+        @Html.EditorFor(model => model.BudgetYear)
+        @Html.ValidationMessageFor(model => model.BudgetYear)
+    </div>
+</div>

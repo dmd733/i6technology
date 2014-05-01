@@ -1,0 +1,49 @@
+﻿@model FacilitiesManagement.Models.OrderRequest
+
+<div class="form-group">
+    @Html.LabelFor(model => model.SubTotal, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.SubTotal)
+        @Html.ValidationMessageFor(model => model.SubTotal)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Taxes, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Taxes)
+        @Html.ValidationMessageFor(model => model.Taxes)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Shipping, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Shipping)
+        @Html.ValidationMessageFor(model => model.Shipping)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.FuelCharges, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.FuelCharges)
+        @Html.ValidationMessageFor(model => model.FuelCharges)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.OtherCharges, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.OtherCharges)
+        @Html.ValidationMessageFor(model => model.OtherCharges)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Total, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Total)
+        @Html.ValidationMessageFor(model => model.Total)
+    </div>
+</div>
