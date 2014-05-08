@@ -27,8 +27,7 @@ app.common = {
     onChangeRestrictValues: function () {
         if (this.value() && this.selectedIndex == -1) {
             var dt = this.dataSource._data[0];
-            this.text(dt[this.options.dataTextField]);
-            this.select();
+            this.text('');
         }
     }
 };
