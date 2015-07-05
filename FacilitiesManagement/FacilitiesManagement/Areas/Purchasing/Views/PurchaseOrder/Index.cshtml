@@ -1,0 +1,34 @@
+﻿@using FacilitiesManagement.Models
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@(Html.Kendo().Grid<OrderRequest>()
+    .Name("grid")
+    .EnableCustomBinding(true)
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.OrderRequestId).Title("ID");
+        columns.Bound(p => p.ReferenceNumber).Title("Reference");
+        columns.Bound(p => p.BudgetYear).Title("Budget Year");
+        columns.Bound(p => p.EstimatedReleaseDate).Format("{0:MM/dd/yyyy hh:mm tt}");//.Title("Last Update Date");
+        columns.Command(p => p.Edit());
+    })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Read(read => read.Action("Load", "PurchaseOrder"))
+        .Update(read => read.Action("Update", "PurchaseOrder"))
+        .Model(model =>
+        {
+            model.Id(m => m.OrderRequestId);
+            model.Field(m => m.OrderRequestId).Editable(false);
+            model.Field(m => m.ReferenceNumber).Editable(false);
+        }))
+    .Editable(editable => editable.Mode(GridEditMode.InLine))
+    .Sortable()
+    .Filterable()
+    .Pageable()
+)
