@@ -23,15 +23,16 @@ namespace FacilitiesManagement.Areas.Purchasing.Controllers
         }
 
         [HttpPost]
-        public ActionResult Update([DataSourceRequest] DataSourceRequest request, OrderRequest model)
+        public ActionResult Update([DataSourceRequest] DataSourceRequest request, EditOrderRequest model)
         {
             var orderRequest = OrderRequests.Find(item => item.OrderRequestId == model.OrderRequestId);
 
             if (orderRequest != null)
             {
-                orderRequest.EstimatedReleaseDate = model.EstimatedReleaseDate;
+                orderRequest.LastUpdate = model.LastUpdate;
                 orderRequest.BudgetYear = model.BudgetYear;
                 orderRequest.ReferenceNumber = model.ReferenceNumber;
+                orderRequest.Department = model.Department;
             }
             else
             {
@@ -47,29 +48,30 @@ namespace FacilitiesManagement.Areas.Purchasing.Controllers
             return View();
         }
 
-        private List<OrderRequest> OrderRequests
+        private List<EditOrderRequest> OrderRequests
         {
             get
             {
-                var orderRequest = Session["OrderRequest"] as List<OrderRequest>;
+                var orderRequest = Session["OrderRequest"] as List<EditOrderRequest>;
                 if (orderRequest == null)
                 {
-                    var results = new List<OrderRequest>();
+                    orderRequest = new List<EditOrderRequest>();
 
                     for (int i = 0; i < 50; i++)
                     {
-                        var order = new OrderRequest
+                        var order = new EditOrderRequest
                         {
                             OrderRequestId = i + 1,
                             BudgetYear = "2015",
                             ReferenceNumber = "PO" + i,
-                            EstimatedReleaseDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Month, DateTime.Now.AddHours(-1 * i).Hour, 0, 0).ToUniversalTime()
+                            LastUpdate = DateTime.Now,
+                            Department = "Department " + ((char) (i + 65)).ToString().ToUpper()
                         };
 
-                        results.Add(order);
+                        orderRequest.Add(order);
                     }
 
-                    Session["OrderRequest"] = results;
+                    Session["OrderRequest"] = orderRequest;
                 }
 
                 return orderRequest;
