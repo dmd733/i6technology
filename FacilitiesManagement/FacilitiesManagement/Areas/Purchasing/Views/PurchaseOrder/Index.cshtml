@@ -1,0 +1,53 @@
+﻿@using FacilitiesManagement.Models
+
+@{
+    ViewBag.Title = "Order Requests";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@(Html.Kendo().Grid<EditOrderRequest>()
+    .Name("grid")
+    .EnableCustomBinding(true)
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.OrderRequestId);
+        columns.Bound(p => p.ReferenceNumber);
+        columns.Bound(p => p.Department);
+        columns.Bound(p => p.BudgetYear);
+        columns.Bound(p => p.LastUpdate).Format("{0:MM/dd/yyyy hh:mm tt}");
+        columns.Command(p => p.Edit());
+    })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Read(read => read.Action("Load", "PurchaseOrder"))
+        .Update(read => read.Action("Update", "PurchaseOrder"))
+        .PageSize(10)
+        .Model(model =>
+        {
+            model.Id(m => m.OrderRequestId);
+            model.Field(m => m.OrderRequestId).Editable(false);
+            model.Field(m => m.ReferenceNumber).Editable(false);
+            model.Field(m => m.LastUpdate).Editable(false);
+        }))
+    .Editable(editable => editable.Mode(GridEditMode.InLine))
+    .Sortable()
+    .Filterable()
+    .Pageable()
+      )
+@section scripts
+{
+    <script>
+        $(function() {
+            var kendoGrid = $("#grid").data("kendoGrid");
+            if (kendoGrid) {
+                kendoGrid.dataSource.transport.parameterMap = function(data, type) {
+                    if (type === "update") {
+                        data.LastUpdate = new Date().toISOString();
+                        return data;
+                    }
+                }
+            }
+        });
+    </script>
+}
